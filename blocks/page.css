@@ -1,8 +1,32 @@
 .page {
-  min-width: 1100px;
-  max-width: 1600px;
-  margin: auto;
   font-family: Inter, Arial, sans-serif;
   font-size: 16px;
   line-height: 20px;
+  background-color: black;
+  color: white;
+}
+
+.page__section {
+  max-width: 880px;
+  width: 100%;
+  position: relative;
+  margin: 0 auto;
+}
+
+.page__content {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+@media screen and (max-width: 480px) {
+  .page{
+    margin:0;
+  }
+  
+  .page__section {
+    margin-left: 19px;
+    margin-right: 19px;
+    width: auto;
+  }
 }
