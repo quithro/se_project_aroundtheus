@@ -19,14 +19,11 @@
   min-height: 100vh;
 }
 
-@media screen and (max-width: 480px) {
-  .page{
-    margin:0;
-  }
-  
+@media screen and (max-width: 950px) {
   .page__section {
+    width: auto;
     margin-left: 19px;
     margin-right: 19px;
-    width: auto;
   }
 }
+

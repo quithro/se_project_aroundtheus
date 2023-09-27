@@ -1,21 +1,20 @@
 # Project 3: Around The U.S.
 
-### Overview  
+**Project Name**
+Around the U.S. - By: Carlos Sierra
+  
+**Project Description**
+  
+This project was made to use a Figma template to create a website through HTML and CSS code. This was done to protray various locations in the U.S. through an interactive and scalable website through various resolutions. Display: Grid was first introduced into this project to achieve the grid view. 
 
-* Intro  
-* Figma  
-* Images  
-  
-**Intro**
-  
-This project is made so all the elements are displayed correctly on popular screen sizes. We recommend investing more time in completing this project, since it's more difficult than previous ones.  
-  
-**Figma**  
-  
+The following resources were used to create this website:
+    * Figma
+    * VSCode
+    * TripleTen
+    * Prettier.io
+
 * [Link to the project on Figma](https://www.figma.com/file/ii4xxsJ0ghevUOcssTlHZv/Sprint-3%3A-Around-the-US?node-id=0%3A1)  
   
-**Images**  
-  
-The way you'll do this at work is by exporting images directly from Figma — we recommend doing that to practice more. Don't forget to optimize them [here](https://tinypng.com/), so your project loads faster. 
-  
-Good luck and have fun!
+The project is currently hosted onto the following GitHub directory:
+
+    * https://github.com/quithro/se_project_aroundtheus.git
