@@ -15,7 +15,10 @@
   .cards__list {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
+  }
+
+  .cards {
+    margin-top: 36px;
   }
 }
