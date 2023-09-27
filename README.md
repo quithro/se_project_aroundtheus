@@ -17,4 +17,4 @@ The following resources were used to create this website:
   
 The project is currently hosted onto the following GitHub directory:
 
-    * https://github.com/quithro/se_project_aroundtheus.git
+    * https://quithro.github.io/se_project_aroundtheus/index.html
