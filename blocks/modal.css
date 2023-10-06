@@ -53,6 +53,10 @@
     flex-direction: column;
 }
 
+.modal__close:hover {
+    opacity: 60%;
+}
+
 .modal__heading{
     color: #000;
     font-weight: 900;
@@ -105,4 +109,9 @@
     border-radius: 2px;
     border: #000 0px;
     color: #fff;
+    cursor: pointer;
+}
+
+.modal__button:hover {
+    opacity: 80%;
 }
