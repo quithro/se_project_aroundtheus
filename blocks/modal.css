@@ -41,7 +41,7 @@
     flex-direction: column;
 }
 
-.modal__opened {
+.modal_opened {
     display: flex;
     justify-content: center;
     align-items: center;
