@@ -7,7 +7,10 @@
     background-color: rgba(0, 0, 0, 0.5);
     z-index: 999;
     display: flex;
-    display: none;
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s 0.3s, opacity 0.2s linear;
+    pointer-events: all;
 }
 
 .modal__container {
@@ -38,12 +41,6 @@
     margin: auto;
 }
 
-.modal_opened {
-    visibility: visible;
-    opacity: 1;
-    transition-delay: 0.2s;
-  }
-
 .modal__close {
     background-image: url(../images/Close-Icon.svg);
     border: none;
@@ -66,6 +63,10 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    visibility: visible;
+    pointer-events: all;
+    opacity: 1;
+    transition: visibility 0s, opacity 0.3s;
 }
 
 .modal__close:hover {
