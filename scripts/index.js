@@ -115,12 +115,13 @@ function handleAddImageSubmit(e) {
     const link = cardUrlInput.value;
     renderCard({name, link}, cardListEl);
     closeModal(imageAddModal);
-    addImageForm.requestFullscreen();
-    imageAddCardForm.requestFullscreen();
+    addImageForm.reset();
 }
 
 /*--------------------------------- Event Listeners --------------------------------*/
-profileEditCloseButton.addEventListener("click", closeModal);
+profileEditCloseButton.addEventListener("click", () => {
+    closeModal(profileEditModal)});
+    
 profileEditForm.addEventListener("submit", handleProfileEditSubmit);
 addImageForm.addEventListener('submit', handleAddImageSubmit);
 
@@ -131,10 +132,7 @@ profileEditButton.addEventListener("click", () => {
 });
 
 imageAddButton.addEventListener("click", () => {
-    imagePreview.src = cardData.link;
-    imagePreview.alt = cardData.name;
-    imagePreviewCaption.textContent = cardData.name;
-    openModal(imagePreviewModal);
+    openModal(addImageModal);
 });
 
 imageAddCloseButton.addEventListener("click", () => {
@@ -142,7 +140,7 @@ imageAddCloseButton.addEventListener("click", () => {
 });
 
 imagePreviewClose.addEventListener("click", () => {
-    closeModal();
+    closeModal(imagePreviewModal);
 });
 
 initialCards.forEach((cardData) => renderCard(cardData, cardListEl));
