@@ -11,6 +11,8 @@
     opacity: 0;
     transition: visibility 0s 0.3s, opacity 0.2s linear;
     pointer-events: all;
+    justify-content: center;
+    align-items: center;
 }
 
 .modal__container {
@@ -60,9 +62,6 @@
 }
 
 .modal_opened {
-    display: flex;
-    justify-content: center;
-    align-items: center;
     visibility: visible;
     pointer-events: all;
     opacity: 1;
