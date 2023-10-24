@@ -87,6 +87,10 @@ function getCardElement(cardData) {
         cardElement.remove();
     });
 
+    imageAddButton.addEventListener("click", () => {
+        openModal(addImageModal);
+    });
+
     cardImageEl.addEventListener("click", () => {
         imagePreview.src = cardData.link;
         imagePreview.alt = cardData.name;
@@ -129,10 +133,6 @@ profileEditButton.addEventListener("click", () => {
     profileTitleInput.value = profileTitle.textContent;
     profileDescriptionInput.value = profileDescription.textContent;
     profileEditModal.classList.add("modal_opened");
-});
-
-imageAddButton.addEventListener("click", () => {
-    openModal(addImageModal);
 });
 
 imageAddCloseButton.addEventListener("click", () => {
