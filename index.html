@@ -56,20 +56,28 @@
         <h3 class="modal__title">Edit Profile</h3>
         <form class="modal__form">  
           <input 
-            class="modal__input" 
+            class="modal__input modal__input_type_name" 
             id="profile-title-input" 
             type="text" 
             name="title" 
             placeholder="Name"
+            maxlength="40"
+            minlength="2"
+            required
             />
+            <span class="modal__error" id="profile-title-input-error"></span>
           <input 
             class="modal__input" 
             id="profile-description-input" 
             type="text" 
             name="description" 
             placeholder="Description"
+            maxlength="200"
+            minlength="2"
+            required
             />
-          <button class="button modal__button" type="submit">Save</button>
+            <span class="modal__error" id="profile-description-input-error"></span>
+          <button class="button modal__button" type="submit" disabled>Save</button>
         </form>
       </div>
     </div>
@@ -86,16 +94,22 @@
             type="text" 
             name="title" 
             placeholder="Title"
+            maxlength="40"
+            minlength="2"
             required
             />
+            <span class="modal__error" id="add-image-title-input-error"></span>
           <input 
             class="modal__input" 
             id="add-image-url-input" 
             type="url" 
             name="url" 
             placeholder="URL"
+            maxlength="200"
+            minlength="2"
             required
             />
+            <span class="modal__error" id="add-image-url-input-error"></span>
           <button class="button modal__button" type="submit">Save</button>
         </form>
       </div>
@@ -112,7 +126,9 @@
         <p class="modal__preview-text"></p>
       </div>
     </div>
-
+    <!-- Index.js -->
+    <script src="./scripts/index.js" defer></script>
+    <script src="./scripts/validation.js" defer></script>
    <template id="card-template">
       <li class="card">
         <img
@@ -127,7 +143,5 @@
         </div>
       </li>
     </template>
-
-    <script src="./scripts/index.js" defer></script>
   </body>
 </html>

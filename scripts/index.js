@@ -60,6 +60,7 @@ const imagePreviewClose = imagePreviewModal.querySelector('#image-preview-closed
 /*-------------------------------- Functions -----------------------------------*/
 function openModal(modal) {
     modal.classList.add("modal_opened");
+    document.addEventListener("keydown", handleEsc);
 }
 
 function closeModal(modal) {
@@ -85,6 +86,10 @@ function getCardElement(cardData) {
     trashButton.addEventListener("click", () => {
         trashButton.classList.toggle("card__trash-button_active");
         cardElement.remove();
+    });
+
+    imageAddButton.addEventListener("click", () => {
+        openModal(addImageModal);
     });
 
     cardImageEl.addEventListener("click", () => {
@@ -118,6 +123,13 @@ function handleAddImageSubmit(e) {
     addImageForm.reset();
 }
 
+function handleEsc(e) {
+    if(e.key === "Escape") {
+        const modal = document.querySelector(".modal_opened");
+        closeModal(modal);
+    }
+}
+
 /*--------------------------------- Event Listeners --------------------------------*/
 profileEditCloseButton.addEventListener("click", () => {
     closeModal(profileEditModal)});
@@ -128,19 +140,48 @@ addImageForm.addEventListener('submit', handleAddImageSubmit);
 profileEditButton.addEventListener("click", () => {
     profileTitleInput.value = profileTitle.textContent;
     profileDescriptionInput.value = profileDescription.textContent;
-    openModal(profileEditModal);
-});
-
-imageAddButton.addEventListener("click", () => {
-        openModal(addImageModal);
+    profileEditModal.classList.add("modal_opened");
 });
 
 imageAddCloseButton.addEventListener("click", () => {
-    closeModal(imageAddModal);
+    imageAddModal.classList.remove("modal_opened");
 });
 
 imagePreviewClose.addEventListener("click", () => {
     closeModal(imagePreviewModal);
+});
+
+profileEditForm.addEventListener("submit", handleProfileEditSubmit);
+profileEditCloseButton.addEventListener("click", () => {
+    closeModal(profileEditModal);
+});
+
+imagePreviewClose.addEventListener("click", () => {
+    closeModal(imagePreviewModal);
+});
+
+profileEditModal.addEventListener("mousedown", (e) => {
+    if (
+        e.target.classList.contains("modal")
+    ) {
+        closeModal(profileEditModal);
+    }
+});
+
+imageAddModal.addEventListener("mousedown", (e) => {
+    if (
+        e.target.classList.contains("modal")
+    ) {
+        closeModal(imageAddModal);
+    }
+});
+
+imagePreviewModal.addEventListener("mousedown", (e) => {
+    if (
+        e.target.classList.contains("modal")
+    ) {
+        closeModal(imagePreviewModal);
+    }
 });
 
 initialCards.forEach((cardData) => renderCard(cardData, cardListEl));
