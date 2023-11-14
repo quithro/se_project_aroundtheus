@@ -73,6 +73,7 @@ function renderCard(cardData, card) {
     cardListEl.prepend(cardElement);
 }
 
+
 function getCardElement(cardData) {
     const cardElement = cardTemplate.cloneNode(true);
     const cardImageEl = cardElement.querySelector('.card__image');
@@ -87,10 +88,6 @@ function getCardElement(cardData) {
     trashButton.addEventListener("click", () => {
         trashButton.classList.toggle("card__trash-button_active");
         cardElement.remove();
-    });
-
-    imageAddButton.addEventListener("click", () => {
-        openModal(addImageModal);
     });
 
     cardImageEl.addEventListener("click", () => {
@@ -128,7 +125,6 @@ function handleAddImageSubmit(e) {
     renderCard({name, link}, cardListEl);
     closeModal(imageAddModal);
     addImageForm.reset();
-    toggleButtonState(imageAddButton);
 }
 
 function handleEsc(e) {
@@ -149,6 +145,10 @@ profileEditButton.addEventListener("click", () => {
     profileTitleInput.value = profileTitle.textContent;
     profileDescriptionInput.value = profileDescription.textContent;
     openModal(profileEditModal);
+});
+
+imageAddButton.addEventListener("click", () => {
+        openModal(addImageModal);
 });
 
 imageAddCloseButton.addEventListener("click", () => {

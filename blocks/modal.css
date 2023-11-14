@@ -130,6 +130,10 @@
     cursor: pointer;
 }
 
+.modal__button:hover {
+    opacity: 0.2;
+}
+
 .modal__button_disabled {
     opacity: 0.2;
     cursor: default;
@@ -168,10 +172,6 @@
     line-height: normal;
     position: right;
 }
-
-.modal__form:valid {
-    border-bottom: 1px solid green; 
-  } 
 
 @media screen and (max-width: 619px) {
     .modal{
