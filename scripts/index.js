@@ -65,6 +65,7 @@ function openModal(modal) {
 
 function closeModal(modal) {
     modal.classList.remove("modal_opened");
+    document.removeEventListener("keydown", handleEsc);
 }
 
 function renderCard(cardData, card) {
@@ -105,6 +106,12 @@ function getCardElement(cardData) {
     return cardElement;
 }
 
+function closeModalOnRemoteClick(evt) {
+    if (evt.target === evt.currentTarget || evt.target.classList.contains("modal__close")) { 
+       closeModal(evt.target)
+    }
+  } 
+
 /*--------------------------------- Event Handlers --------------------------------*/
 
 function handleProfileEditSubmit(e) {
@@ -121,6 +128,7 @@ function handleAddImageSubmit(e) {
     renderCard({name, link}, cardListEl);
     closeModal(imageAddModal);
     addImageForm.reset();
+    toggleButtonState(imageAddButton);
 }
 
 function handleEsc(e) {
@@ -140,11 +148,11 @@ addImageForm.addEventListener('submit', handleAddImageSubmit);
 profileEditButton.addEventListener("click", () => {
     profileTitleInput.value = profileTitle.textContent;
     profileDescriptionInput.value = profileDescription.textContent;
-    profileEditModal.classList.add("modal_opened");
+    openModal(profileEditModal);
 });
 
 imageAddCloseButton.addEventListener("click", () => {
-    imageAddModal.classList.remove("modal_opened");
+    closeModal(imageAddModal);
 });
 
 imagePreviewClose.addEventListener("click", () => {
@@ -160,28 +168,10 @@ imagePreviewClose.addEventListener("click", () => {
     closeModal(imagePreviewModal);
 });
 
-profileEditModal.addEventListener("mousedown", (e) => {
-    if (
-        e.target.classList.contains("modal")
-    ) {
-        closeModal(profileEditModal);
-    }
-});
+profileEditModal.addEventListener("mousedown", closeModalOnRemoteClick);
 
-imageAddModal.addEventListener("mousedown", (e) => {
-    if (
-        e.target.classList.contains("modal")
-    ) {
-        closeModal(imageAddModal);
-    }
-});
+imageAddModal.addEventListener("mousedown", closeModalOnRemoteClick);
 
-imagePreviewModal.addEventListener("mousedown", (e) => {
-    if (
-        e.target.classList.contains("modal")
-    ) {
-        closeModal(imagePreviewModal);
-    }
-});
+imagePreviewModal.addEventListener("mousedown", closeModalOnRemoteClick);
 
 initialCards.forEach((cardData) => renderCard(cardData, cardListEl));

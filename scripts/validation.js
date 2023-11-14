@@ -34,19 +34,15 @@ function enableButton(button, inactiveButtonClass) {
     button.disabled = false;
 }
 
-function toggleButtonState(inputEls, submitButton, options) {
-    let foundInvalid = false;
-    inputEls.forEach((inputEl) => {
-      if (!inputEl.validity.valid) {
-        foundInvalid = true;
-      }
-    });
-  
-    if (foundInvalid) {
-      disableButton(submitButton, options.inactiveButtonClass);
-    } else {
-      enableButton(submitButton, options.inactiveButtonClass);
+function toggleButtonState(inputEls, submitButton, { inactiveButtonClass }) {
+    if (hasInvalidInput(inputEls)) {
+        submitButton.classList.add(inactiveButtonClass);
+        submitButton.disabled = true;
+        return;
     }
+
+    submitButton.classList.remove(inactiveButtonClass);
+    submitButton.disabled = false;
 }
 
 function setEventListeners(formEl, options) {
