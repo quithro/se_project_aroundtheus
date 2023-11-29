@@ -1,4 +1,5 @@
-import card from "./cards.js";
+import card from "./Card.js";
+import FormValidator from "./FormValidator.js";
 
 const initialCards = [
     {
@@ -32,8 +33,8 @@ const cardData = {
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/yosemite.jpg" 
 };
 
-let card = new card(cardData, "#card-template");
-card.getView();
+let Card = new card(cardData, "#card-template");
+Card.getView();
 
 /*----------------------------- Elements -------------------------------------*/
 
