@@ -1,5 +1,5 @@
-import card from "./Card.js";
-import FormValidator from "./FormValidator.js";
+import card from "../components/Card.js"
+import FormValidator from "../components/FormValidator.js"
 
 const initialCards = [
     {
@@ -28,12 +28,7 @@ const initialCards = [
     },
 ];
 
-const cardData = {
-    name: "Yosemite Valley",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/yosemite.jpg" 
-};
-
-let Card = new card(cardData, "#card-template");
+let Card = new card(initialCards, "#card-template");
 Card.getView();
 
 /*----------------------------- Elements -------------------------------------*/
