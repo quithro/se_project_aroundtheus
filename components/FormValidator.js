@@ -33,17 +33,13 @@ export default class FormValidator {
     }
 
     _disableButton() {
-        if (this._button) {
             this._button.classList.add(this._inactiveButtonClass);
-            this._button.disabled = false;
-        }
+            this._button.disabled = true;
     }
 
     _enableButton() {
-        if (this._button) {
             this._button.classList.remove(this._inactiveButtonClass);
-            this._button.disabled = true;
-        }
+            this._button.disabled = false;
     }
 
     _toggleButtonState() {
@@ -54,7 +50,7 @@ export default class FormValidator {
         }
     }
 
-    _checkInputValidity() {
+    _checkInputValidity(inputEl) {
         if (!inputEl.validity.valid) {
             return this._showInputError(inputEl);
         } else {
