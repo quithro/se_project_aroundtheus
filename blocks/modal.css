@@ -199,7 +199,7 @@
 
     .modal__title {
         width: 238px;
-        padding-left: px;
+        padding-left: 15px;
         padding-top: 25px;
         line-height: 21.78px;
         font-size: 18px;
@@ -223,5 +223,15 @@
         position: absolute;
         top: -40px;
         left: calc(100% - 20px);
+    }
+}
+
+@media screen and (max-width: 375px) {
+    .modal__close {
+        width: 26px;
+        height: 26px;
+        top: -40px;
+        right: 0px;
+        left: auto;
     }
 }

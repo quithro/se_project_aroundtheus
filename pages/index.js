@@ -197,4 +197,4 @@ profileEditModal.addEventListener("mousedown", closeModalOnRemoteClick);
 imageAddModal.addEventListener("mousedown", closeModalOnRemoteClick);
 imagePreviewModal.addEventListener("mousedown", closeModalOnRemoteClick);
 
-initialCards.forEach((cardData) => renderCard(cardData, cardListEl));
+initialCards.forEach((cardData) => renderCard(cardData, cardListEl)); 
