@@ -1,41 +1,45 @@
 export default class Card {
-    constructor(initialCards, cardSelector, handleImageClick) {
-        this._name = initialCards.name;
-        this._link = initialCards.link;
+    constructor({ name, link }, cardSelector, handleImageClick) {
+        this._name = name;
+        this._link = link;
         this._cardSelector = cardSelector;
-        this._cardImageEl = initialCards.imagePreview;
-        this._cardElement = this._getTemplate();
+        this._handleImageClick = handleImageClick
     } 
 
-    _getTemplate() {
-        const cardTemplate = document.querySelector(this._cardSelector);
-        const cardElement = cardTemplate.content.querySelector(".card").cloneNode(true);
-        return cardElement;
-    }
-
     _setEventListeners() {
-        this._trashButton.addEventListener('click', () => {
-                this._handleTrashCard();
+            this._trashButton.addEventListener('click', () => {
+                    this._handleTrashCard();
+                });
+
+            this._likeButton.addEventListener("click", () => {
+                this._handleLikeIcon();
             });
 
-        this._likeButton.addEventListener("click", () => {
-            this._handleLikeIcon();
-        });
-
-
-        this._cardImageEl.addEventListener("click", () => {
-            this._handleImageClick(this.name, this._link);
+            this._cardImageEl.addEventListener("click", () => {
+                this._handleImageClick();
+            });
         }
-        )
+
+    _handleLikeButton() {
+        this._likeButton.classList.toggle("card__like-button_active");
     }
 
     _handleTrashCard() {
-        this._cardElement.remove();
-        this._cardElement = null;
+            this._cardElement.remove();
+            this._cardElement = null;
     }
 
+    _handleImageClick = () => {
+        this._handleImageClick({ name: this._name, link: this._link});
+    }
+
+    _getTemplate() {
+        return document.querySelector(this._cardSelector).content.querySelector(".card").cloneNode(true);
+    }
 
     getView() {
+        this._cardElement = this._getTemplate();
+
         this._cardImageEl = this._cardElement.querySelector('.card__image');
         this._cardTitleEl = this._cardElement.querySelector('.card__title');
         this._likeButton = this._cardElement.querySelector(".card__like-button");
@@ -46,5 +50,6 @@ export default class Card {
         this._cardTitleEl.textContent = this._name;
         
         this._setEventListeners();
+        return this._cardElement;
     }
 }
