@@ -29,10 +29,6 @@ export default class Card {
             this._cardElement = null;
     }
 
-    _handleImageClick = () => {
-        this._handleImageClick({ name: this._name, link: this._link});
-    }
-
     _getTemplate() {
         return document.querySelector(this._cardSelector).content.querySelector(".card").cloneNode(true);
     }
