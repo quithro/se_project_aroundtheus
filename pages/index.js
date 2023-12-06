@@ -140,13 +140,15 @@ profileEditButton.addEventListener("click", () => {
     profileTitleInput.value = profileTitle.textContent;
     profileDescriptionInput.value = profileDescription.textContent.trim();
     editFormValidator.resetValidation();
+    editFormValidator._disableButton();
     openModal(profileEditModal);
 });
 
 profileEditForm.addEventListener("submit", handleProfileEditSubmit); 
 
 imageAddButton.addEventListener("click", () => {
-        openModal(addImageModal);
+    cardFormValidator._disableButton();
+    openModal(addImageModal);
 });
 
 addImageFormElement.addEventListener('submit', handleAddImageSubmit);
