@@ -31,12 +31,11 @@ const initialCards = [
 
 /*----------------------------- Elements -------------------------------------*/
 const config = {
-    formSelector: ".modal__form",
     inputSelector: ".modal__input",
     submitButtonSelector: ".modal__button",
     inactiveButtonClass: "modal__button_disabled",
     inputErrorClass: "modal__input_type_error",
-    errorClass: "modal__error"
+    errorClass: "modal__error",
 };
 
 const profileEditModal = document.querySelector("#profile-edit-modal");
@@ -52,13 +51,13 @@ editFormValidator.enableValidation();
 cardFormValidator.enableValidation();
 
 const profileEditButton = document.querySelector("#profile-edit-button");
-const profileEditCloseButton = profileEditModal.querySelector(".modal__close");
 
 const profileTitle = document.querySelector(".profile__title");
 const profileDescription = document.querySelector(".profile__description");
 const profileTitleInput = document.querySelector("#profile-title-input");
 const profileDescriptionInput = document.querySelector("#profile-description-input");
-const profileEditForm = profileEditModal.querySelector(".modal__form");
+const profileEditForm = document.forms["profile-edit-form"];
+const cardAddForm = document.forms["add-card-form"]
 
 
 const cardListEl = document.querySelector('.cards__list');
@@ -91,35 +90,35 @@ function closeModal(modal) {
     document.removeEventListener("keydown", handleEsc);
 }
 
-function handleImageClick({name, link}) {
-    imagePreview.src = cardData.link;
-    imagePreview.alt = cardData.name;
-    imagePreviewCaption.textContent = cardData.name;
+function handleImageClick( {name, link} ) {
+    imagePreview.src = link;
+    imagePreview.alt = name;
+    imagePreviewCaption.textContent = name;
     openModal(imagePreviewModal);
 }
 
-function handleEsc(e) {
-    if(e.key === "Escape") {
+function handleEsc(evt) {
+    if(evt.key === "Escape") {
         const modal = document.querySelector(".modal_opened");
         closeModal(modal);
     }
 }
 
-function handleProfileEditSubmit(e) {
-    e.preventDefault();
+function handleProfileEditSubmit(evt) {
+    evt.preventDefault();
     profileTitle.textContent = profileTitleInput.value;
     profileDescription.textContent = profileDescriptionInput.value;
-    editFormValidator._disableButton();
+    editFormValidator.disableSubmitButton();
     closeModal(profileEditModal);
 }
 
-function handleAddImageSubmit(e) {
-    e.preventDefault();
+function handleAddImageSubmit(evt) {
+    evt.preventDefault();
     const name = cardTitleInput.value;
     const link = cardUrlInput.value;
-    renderCard({name, link}, cardListEl);
-    cardFormValidator.disableButton();
-    e.target.reset();
+    renderCard( {name, link} , cardListEl);
+    cardFormValidator.disableSubmitButton();
+    evt.target.reset();
 
     closeModal(imageAddModal);
     cardTitleInput.value = "";
@@ -127,19 +126,19 @@ function handleAddImageSubmit(e) {
 }
 
 function createCard (cardData, cardSelector, handleImageClick) {
-    const cardEl = new Card(cardData, cardSelector, handleAddImageSubmit);
+    const cardEl = new Card(cardData, cardSelector, handleImageClick);
     return cardEl.getView();
 }
 
 function renderCard(cardData, wrapper) {
-    const card = createCard(cardData, "#card-template", handleAddImageSubmit);
+    const card = createCard(cardData, "#card-template", handleImageClick);
     wrapper.prepend(card);
 }
 
 /*--------------------------------- Event Listeners --------------------------------*/
 profileEditButton.addEventListener("click", () => {
     profileTitleInput.value = profileTitle.textContent;
-    profileDescriptionInput.value = profileDescription.textContent;
+    profileDescriptionInput.value = profileDescription.textContent.trim();
     editFormValidator.resetValidation();
     openModal(profileEditModal);
 });
@@ -148,7 +147,6 @@ profileEditForm.addEventListener("submit", handleProfileEditSubmit);
 
 imageAddButton.addEventListener("click", () => {
         openModal(addImageModal);
-        cardFormValidator.resetValidation();
 });
 
 addImageFormElement.addEventListener('submit', handleAddImageSubmit);
