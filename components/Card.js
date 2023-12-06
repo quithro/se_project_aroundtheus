@@ -12,7 +12,7 @@ export default class Card {
                 });
 
             this._likeButton.addEventListener("click", () => {
-                this._handleLikeIcon();
+                this._handleLikeButton();
             });
 
             this._cardImageEl.addEventListener("click", () => {
