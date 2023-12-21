@@ -50,14 +50,14 @@ addCardPopup.setEventListeners();
 const userInfo = new UserInfo(".profile__title", ".profile__description");
 
 document.querySelector(".profile__add-button").addEventListener("click", () => {
-    cardFormValidator._toggleButtonState();
+    cardFormValidator.toggleButtonState();
     addCardPopup.open();
 });
 
 /* ------------------------------------------------------------------- */
 function createCard (cardData) {
     return new Card(cardData, "#card-template", () => {
-        PopupWithImage.open(cardData.link, cardData.name);
+        PopupImage.open(cardData.link, cardData.name);
     }).getView();
 }
 
