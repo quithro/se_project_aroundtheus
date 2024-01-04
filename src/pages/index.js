@@ -1,8 +1,9 @@
 import Card from "../components/Card.js";
 import FormValidator from "../components/FormValidator.js";
-import "./index.css";
+import Popup from "../components/Popup.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import PopupWithImage from "../components/PopupWithImage.js";
+import "../pages/index.css";
 import UserInfo from "../components/UserInfo.js";
 import Section from "../components/Section.js";
 
@@ -30,14 +31,15 @@ const section = new Section(
 );
 section.renderItems();
 
-const cardFormValidator = new FormValidator(config, addImageFormElement);
+const cardFormValidator = new FormValidator(config, imageAddModal);
 cardFormValidator.enableValidation();
 
-const editFormValidator = new FormValidator(config, profileEditElement);
+const profileEditForm = profileEditModal.querySelector(".modal__form");
+const editFormValidator = new FormValidator(config, profileEditForm);
 editFormValidator.enableValidation();
 
-const popupImage = new PopupWithImage("#image-preview-modal");
-popupImage.setEventListeners();
+const popupWithImage = new PopupWithImage("#image-preview-modal");
+popupWithImage.setEventListeners();
 
 const profileEditPopup = new PopupWithForm(
   "#profile-edit-modal",
@@ -61,7 +63,7 @@ document.querySelector(".profile__add-button").addEventListener("click", () => {
 /* ------------------------------------------------------------------- */
 function createCard(cardData) {
   return new Card(cardData, "#card-template", () => {
-    popupImage.open(cardData.link, cardData.name);
+    popupWithImage.open(cardData.link, cardData.name);
   }).getView();
 }
 
