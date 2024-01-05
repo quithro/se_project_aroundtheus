@@ -50,7 +50,7 @@ export default class Card {
       cardImageEl.alt = this._name;
   
       const cardTitleEl = this._cardElement.querySelector(".card__title");
-      cardTitleEl.textContent = cardData._name;
+      cardTitleEl.textContent = cardData.name;
   
       this._setEventListeners();
   

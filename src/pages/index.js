@@ -73,15 +73,15 @@ function handleProfileEditSubmit(formData) {
 }
 
 function handleAddImageSubmit(formData) {
-  const card = createCard({ name: formData.name, link: formData });
+  const card = createCard({ name: formData.title, link: formData.url });
   section.addItem(card);
   addCardPopup.close();
 }
 
 profileEditButton.addEventListener("click", () => {
-  const { name, description } = userInfo.getUserInfo();
-  profileTitleInput.value = name;
-  profileDescriptionInput.value = description;
+  const profileUserInfo = userInfo.getUserInfo();
+  profileTitleInput.value = profileUserInfo.name;
+  profileDescriptionInput.value = profileUserInfo.description;
   profileEditPopup.open();
 });
 
