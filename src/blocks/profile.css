@@ -73,6 +73,28 @@
   margin-right: 30px;
 }
 
+.profile__image:hover {
+  opacity: 0.8;
+}
+
+.profile__avatar-container {
+    position: relative;
+}
+
+.profile__avatar-edit-button {
+  position: absolute;
+  background: transparent url("../images/Vector.svg") center no-repeat;
+  width: 26px;
+  height: 26px;
+  top: 47px; 
+  left: 47px;
+  border: none;
+  opacity: 0;
+  background-size: contain;
+  background-color: rgba(0, 0, 0, 0.2);
+  transition:  0.3s ease-in-out;
+}
+
 @media screen and (max-width: 795px) {
   .profile {
     min-width: 450px;
