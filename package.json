@@ -5,6 +5,9 @@
   "main": "index.js",
   "devDependencies": {},
   "scripts": {
+    "dev": "webpack serve --mode development",
+    "build": "rm -rf dist && webpack --mode production",
+    "test": "echo \"Error: no test specified\" && exit 1",
     "predeploy": "npm run build",
    "deploy": "gh-pages -d dist"
   },
