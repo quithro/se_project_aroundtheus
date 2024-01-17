@@ -42,5 +42,22 @@ export const imageAddModal = document.querySelector('#add-image-modal');
 export const imageAddButton = document.querySelector('#profile__add-button');
 export const cardListEl = document.querySelector('.cards__list');
 
+export const cardsWrap = document.querySelector(".cards__list");
+export const cardTemplate = document.querySelector("#card-template").textContent.firstElementChild;
 
+export const editProfileModal = document.querySelector("#profile-edit-modal");
+export const profileTitle = document.querySelector(".profile__title");
+export const profileDescription = document.querySelector(".profile__description");
+export const profileAvatarEditButton = document.querySelector(".profile__avatar-edit-button");
+export const profileForm = document.forms["profile-form"];
+export const profileNameInput = profileForm.querySelector("#profile-description-input");
 
+export const addCardModal = document.querySelector("#add-card-modal");
+export const addNewCardButton = document.querySelector(".profile__add-button");
+export const cardForm = document.forms["card-form"];
+export const addCardTitleInput = cardForm.querySelector("#add-image-title-input");
+export const addCardUrlInput = cardForm.querySelector("#add-image-url-input");
+
+export const previewImageModal = document.querySelector("#preview-image-modal");
+export const previewImage = previewImageModal.querySelector(".modal__preview-image");
+export const previewImageCaption = previewImageModal.querySelector(".modal__preview-text");
