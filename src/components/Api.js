@@ -1,21 +1,25 @@
 export default class Api {
     constructor(config) {
-        this._baseURL = options.baseURL;
-        this._headers = options.headers;
+        this._baseUrl = config.baseUrl;
+        this._headers = config.headers;
     }
 
     _getRes(res) {
-        return res.ok ? res.json() : Promise.reject(`Error:${res.status}`);
-    }
+        if (res.ok) {
+            return res.json();
+          }
+          return Promise.reject(`Error: ${res.status}`);
+        }
 
     getUserInfo() {
-        return fetch(`${this._baseUrl}/users/me` , {
+        return fetch(`${this._baseUrl}/users/me`, {
+            method: "GET",
             headers: this._headers,
         }).then(this._getRes);
     }
 
     updateAvatar(url) {
-        return fetch(`${this._baseURL}/users/me/avatar`), {
+        return fetch(`${this._baseUrl}/users/me/avatar`), {
             method: "PATCH",
             headers: this._headers,
             body: JSON.stringify({
@@ -25,7 +29,7 @@ export default class Api {
     }
 
     getInitialCards() {
-        return fetch(`${this._baseURL}/cards`, {
+        return fetch(`${this._baseUrl}/cards`, {
             method: "GET",
             headers: this._headers,
         }).then(this._getRes);
