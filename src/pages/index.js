@@ -1,3 +1,4 @@
+import * as constants from "../utils/constants.js";
 import Api from "../components/Api.js";
 import Card from "../components/Card.js";
 import FormValidator from "../components/FormValidator.js";
@@ -9,20 +10,10 @@ import "../pages/index.css";
 import UserInfo from "../components/UserInfo.js";
 import Section from "../components/Section.js";
 
-import {
-  initialCards,
-  config,
-  imageAddModal,
-  cardListEl,
-  profileEditButton,
-  profileEditModal,
-  imageAddButton,
-  profileTitleInput,
-  profileDescriptionInput,
-  profileAvatarEditButton,
-} from "../utils/constants.js";
 
 /* ------- Constants ------- */
+
+const cardSection = new Section(renderCard, constants.cardListEl);
 
 const userInfo = new UserInfo(
   ".profile__title",
@@ -35,37 +26,35 @@ const api = new Api({
   headers: {
     authorization: "c56e30dc-2883-4270-a59e-b2f7bae969c6",
     "Content-Type": "application/json",
-  }
+  },
 });
 
-let section;
 
 /* -------- Form Validation ------- */
 
-const profileEditForm = document.forms["modal__form"];
+const profileEditForm = document.forms["profile-edit-form"];
 const changeProfileAvatarForm = document.forms["avatar-form"];
 const addCardForm = document.forms["add-card-form"];
 
 /* ------ Promise ------- */
 
-Promise.all([api.getUserInfo(), api.getInitialCards()])
-.then(([userData, initialCards]) => {
-  userInfo.setUserInfo({ name: userData.name, about: userData.about });
-  userInfo.setAvatar(userData.avatar);
-  section = new Section(
-    {
-      items: initialCards,
-      renderer: renderCard,
-    },
-    ".gallery__cards"
-  );
-  section.renderItems();
-})
-.catch((err) => {
-  console.error(err);
-});
-
-section.renderItems();
+api
+  .getUserInfo()
+  .then((res) => {
+    userInfo.setUserInfo(res);
+    userInfo.setUserAvatar(res);
+  })
+  .catch((err) => {
+    console.error(`Error ${err}`);
+  });
+api
+  .getInitialCards()
+  .then((res) => {
+    cardSection.renderItems(res);
+  })
+  .catch((err) => {
+    console.error(`Error ${err}`);
+  });
 
 /* ------- Validator Constants ----- */
 
