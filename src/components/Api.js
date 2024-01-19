@@ -46,7 +46,10 @@ export default class Api {
         return fetch(`${this._baseUrl}/cards`, {
           method: "POST",
           headers: this._headers,
-          body: JSON.stringify(data),
+          body: JSON.stringify({
+            name: card.name,
+            link: card.link,
+          }),
         }).then(this.renderResults);
       }
 

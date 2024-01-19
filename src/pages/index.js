@@ -48,24 +48,6 @@ const addCardForm = document.forms["add-card-form"];
 
 /* ------ Promise ------- */
 
-/* api
-  .getUserInfo()
-  .then((res) => {
-    userInfo.setUserInfo(res);
-    userInfo.updateAvatar(url);
-  })
-  .catch((err) => {
-    console.error(`Error ${err}`);
-  });
-api
-  .getInitialCards()
-  .then((res) => {
-    cardSection.renderItems(res);
-  })
-  .catch((err) => {
-    console.error(`Error ${err}`);
-  }); */
-
   Promise.all([api.getUserInfo(), api.getInitialCards()])
   .then(([userData, initialCards]) => {
     userInfo.setUserInfo({ name: userData.name, about: userData.about });
