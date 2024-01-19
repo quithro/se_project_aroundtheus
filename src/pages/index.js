@@ -1,4 +1,3 @@
-import * as constants from "../utils/constants.js";
 import Api from "../components/Api.js";
 import Card from "../components/Card.js";
 import FormValidator from "../components/FormValidator.js";
@@ -9,11 +8,22 @@ import PopupWithImage from "../components/PopupWithImage.js";
 import "../pages/index.css";
 import UserInfo from "../components/UserInfo.js";
 import Section from "../components/Section.js";
-
+import {
+  initialCards,
+  config,
+  imageAddModal,
+  cardListEl,
+  profileEditButton,
+  profileEditModal,
+  imageAddButton,
+  profileTitleInput,
+  profileDescriptionInput,
+  profileAvatarEditButton,
+} from "../utils/constants.js";
 
 /* ------- Constants ------- */
 
-const cardSection = new Section(renderCard, constants.cardListEl);
+const cardSection = new Section(renderCard, '.cards__list');
 
 const userInfo = new UserInfo(
   ".profile__title",
@@ -38,11 +48,11 @@ const addCardForm = document.forms["add-card-form"];
 
 /* ------ Promise ------- */
 
-api
+/* api
   .getUserInfo()
   .then((res) => {
     userInfo.setUserInfo(res);
-    userInfo.setUserAvatar(res);
+    userInfo.updateAvatar(url);
   })
   .catch((err) => {
     console.error(`Error ${err}`);
@@ -54,6 +64,23 @@ api
   })
   .catch((err) => {
     console.error(`Error ${err}`);
+  }); */
+
+  Promise.all([api.getUserInfo(), api.getInitialCards()])
+  .then(([userData, initialCards]) => {
+    userInfo.setUserInfo({ name: userData.name, about: userData.about });
+    userInfo.setAvatar(userData.avatar);
+    section = new Section(
+      {
+        items: initialCards,
+        renderer: renderCard,
+      },
+      ".gallery__cards"
+    );
+    section.renderItems();
+  })
+  .catch((err) => {
+    console.error(err);
   });
 
 /* ------- Validator Constants ----- */
@@ -124,15 +151,15 @@ function handleCardDelete(cardId) {
 function handleChangeProfileAvatarFormSubmit(url) { 
   changeProfileAvatarPopup.setLoading(true, "Saving...");
   api
-  .updateAvatar(url)
-  .then((data) => {
-    userInfo.setAvatar(data.avatar);
-    changeProfileAvatarPopup.close();
-  })
-  .catch((err) => {
-    console.error(err);
-  })
-  .finally(() => changeProfileAvatarPopup.setLoading(false, "Save"));
+    .updateAvatar(url)
+    .then((data) => {
+     userInfo.setAvatar(data.avatar);
+      changeProfileAvatarPopup.close();
+    })
+    .catch((err) => {
+      console.error(err);
+    })
+    .finally(() => changeProfileAvatarPopup.setLoading(false, "Save"));
 }
 
 function handleProfileEditSubmit(data) {
