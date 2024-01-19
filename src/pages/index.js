@@ -34,7 +34,7 @@ const userInfo = new UserInfo(
 const api = new Api({
   baseUrl: "https://around-api.en.tripleten-services.com/v1",
   headers: {
-    authorization: "c56e30dc-2883-4270-a59e-b2f7bae969c6",
+    authorization: "54f5d6dd-9ada-4439-859d-f491b4ee05fc",
     "Content-Type": "application/json",
   },
 });
@@ -47,6 +47,8 @@ const changeProfileAvatarForm = document.forms["avatar-form"];
 const addCardForm = document.forms["add-card-form"];
 
 /* ------ Promise ------- */
+
+let section;
 
   Promise.all([api.getUserInfo(), api.getInitialCards()])
   .then(([userData, initialCards]) => {
