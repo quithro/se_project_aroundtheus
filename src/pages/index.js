@@ -23,7 +23,7 @@ import {
 
 /* ------- Constants ------- */
 
-const cardSection = new Section(renderCard, '.cards__list');
+//const cardSection = new Section(renderCard, '.cards__list');
 
 const userInfo = new UserInfo(
   ".profile__title",
@@ -48,20 +48,20 @@ const addCardForm = document.forms["add-card-form"];
 
 /* ------ Promise ------- */
 
-let section;
+let cardSection;
 
   Promise.all([api.getUserInfo(), api.getInitialCards()])
   .then(([userData, initialCards]) => {
     userInfo.setUserInfo({ name: userData.name, description: userData.description });
     userInfo.setAvatar(userData.avatar);
-    section = new Section(
+    cardSection = new Section(
       {
         items: initialCards,
         renderer: renderCard,
       },
       ".gallery__cards"
     );
-    section.renderItems();
+    cardSection.renderItems();
   })
   .catch((err) => {
     console.error(err);
@@ -110,7 +110,7 @@ function createCard(cardData) {
 
 function renderCard(cardData) {
   const cardEl = createCard(cardData);
-  section.addItem(cardEl);
+  cardSection.addItem(cardEl);
 }
 
 function handleCardDelete(cardId) {
