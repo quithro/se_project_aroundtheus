@@ -36,7 +36,7 @@ const api = new Api({
   headers: {
     authorization: "54f5d6dd-9ada-4439-859d-f491b4ee05fc",
     "Content-Type": "application/json",
-  },
+  }
 });
 
 
@@ -52,7 +52,7 @@ let section;
 
   Promise.all([api.getUserInfo(), api.getInitialCards()])
   .then(([userData, initialCards]) => {
-    userInfo.setUserInfo({ name: userData.name, about: userData.about });
+    userInfo.setUserInfo({ name: userData.name, description: userData.description });
     userInfo.setAvatar(userData.avatar);
     section = new Section(
       {

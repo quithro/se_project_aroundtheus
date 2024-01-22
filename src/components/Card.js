@@ -22,24 +22,6 @@ export default class Card {
     }
 
     _setEventListeners() {
-      /*this._cardElement
-        .querySelector(".card__trash-button")
-        .addEventListener("click", () => {
-          this._handleTrashCard();
-        });
-  
-      this._cardElement
-        .querySelector(".card__like-button")
-        .addEventListener("click", () => {
-          this._handleLikeButton();
-        });
-  
-      this._cardElement
-        .querySelector(".card__image")
-        .addEventListener("click", () => {
-          this._handleImageClick({ name: this._name, link: this._link });
-        }); */
-
         this._trashButton.addEventListener("click", () => {
           this._handleTrashCard(this);
         });
@@ -74,17 +56,6 @@ export default class Card {
    getId() {
       return this._id;
     }
-
-    /*_handleLikeButton() {
-      this._cardElement
-        .querySelector(".card__like-button")
-        .classList.toggle("card__like-button_active");
-    }
-  
-    _handleTrashCard() {
-      this._cardElement.remove();
-      this._cardElement = null;
-    } */
 
     getView() {
       this._likeButton = this._cardElement.querySelector(".card__like-button");
