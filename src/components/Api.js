@@ -25,22 +25,22 @@ export default class Api {
     }            
 
     updateAvatar(url) {
-        return fetch(`${this._baseUrl}/users/me/avatar`), {
+        return fetch(`${this._baseUrl}/users/me/avatar`, {
             method: "PATCH",
             headers: this._headers,
             body: JSON.stringify({
                 avatar: url.avatar,
             }),
-        }.then(this.renderResult);
+        }).then(this.renderResult);
     }
     
-    profileUpdate(userData) {
+    profileUpdate(data) {
         return fetch(`${this._baseUrl}/users/me`, {
             method: "PATCH",
             headers: this._headers,
             body: JSON.stringify({
-                name: userData.name,
-                about: userData.about,
+                name: data.title,
+                about: data.description,
             }),
         }).then(this.renderResult);
     }
@@ -50,8 +50,8 @@ export default class Api {
           method: "POST",
           headers: this._headers,
           body: JSON.stringify({
-            name: card.name,
-            link: card.link,
+            name: card.title,
+            link: card.url,
           }),
         }).then(this.renderResult);
       }

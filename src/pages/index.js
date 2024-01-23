@@ -51,12 +51,12 @@ let cardSection;
   .then(([userData, initialCards]) => {
     userInfo.setUserInfo({ name: userData.name, about: userData.about });
     userInfo.setAvatar(userData.avatar);
-    const cardSection = new Section(
+    cardSection = new Section(
       {
         items: initialCards,
         renderer: renderCard,
       },
-      cardListEl
+      ".cards__list"
     );
     cardSection.renderItems();
   })
@@ -79,8 +79,7 @@ const profileEditPopup = new PopupWithForm(
   "#profile-edit-modal",
   handleProfileEditSubmit,
 );
-const popupWithImage = new PopupWithImage("#image-preview-modal");
-popupWithImage.setEventListeners();
+const imagePopup = new PopupWithImage("#image-preview-modal");
 const addCardPopup = new PopupWithForm(
   "#add-image-modal",
   handleAddImageSubmit,
@@ -98,8 +97,8 @@ changeProfileAvatarFormValidator.enableValidation();
 
 function createCard(cardData) {
   const card = new Card(cardData, "#card-template", {
-    handleImageClick: () => popupWithImage.open(cardData.name, cardData.link),
-    handleCardDelete,
+    handleImageClick: () => imagePopup.open(cardData.name, cardData.link),
+    handleTrashCard,
     handleCardLike: handleCardLike,
   });
   return card.getView();
@@ -110,7 +109,7 @@ function renderCard(cardData) {
   cardSection.addItem(cardEl);
 }
 
-function handleCardDelete(cardId) {
+function handleTrashCard(cardId) {
   cardDeletePopup.open();
   cardDeletePopup.setSubmitAction(() => {
     cardDeletePopup.setLoading(true, "Deleting...");
@@ -218,7 +217,7 @@ imageAddButton.addEventListener("click", () => {
 
 /* -------- setEventListeners ------ */
 
-popupWithImage.setEventListeners();
+imagePopup.setEventListeners();
 changeProfileAvatarPopup.setEventListeners();
 profileEditPopup.setEventListeners();
 addCardPopup.setEventListeners();
