@@ -1,22 +1,23 @@
 export default class Api {
-    constructor(config) {
-        this._baseUrl = config.baseUrl;
-        this._headers = config.headers;
+    constructor({ baseUrl, headers }) {
+        this._baseUrl = baseUrl;
+        this._headers = headers;
     }
 
-    _getRes(res) {
+    renderResult(res) {
         if (res.ok) {
             return res.json();
-          }
+          } else {
           return Promise.reject(`Error: ${res.status}`);
-        }
+        } 
+    }
 
     getUserInfo() {
         return fetch(`${this._baseUrl}/users/me`, {
             method: "GET",
-            headers: this._headers,
-        }).then(this._getRes);
-    }
+            headers: this._headers,  
+        }).then(this.renderResult);    
+    }            
 
     updateAvatar(url) {
         return fetch(`${this._baseUrl}/users/me/avatar`), {
@@ -25,14 +26,14 @@ export default class Api {
             body: JSON.stringify({
                 avatar: url.avatar,
             }),
-        }.then(this._getRes);
+        }.then(this.renderResult);
     }
 
     getInitialCards() {
         return fetch(`${this._baseUrl}/cards`, {
             method: "GET",
             headers: this._headers,
-        }).then(this._getRes);
+        }).then(this.renderResult);
     }
     
     profileUpdate(data) {
@@ -40,10 +41,10 @@ export default class Api {
             method: "PATCH",
             headers: this._headers,
             body: JSON.stringify({
-                name: data.name,
-                about: data.description,
+                data: data.name,
+                data: data.description,
             }),
-        }).then(this._getRes);
+        }).then(this.renderResult);
     }
 
     addCard(card) {
@@ -54,27 +55,27 @@ export default class Api {
             name: card.name,
             link: card.link,
           }),
-        }).then(this._getRes);
+        }).then(this.renderResult);
       }
 
-    deleteCard(cardId) {
-        return fetch(`${this._baseUrl}/cards/${cardId}`, {
+    deleteCard(card) {
+        return fetch(`${this._baseUrl}/cards/${card}`, {
             method: "DELETE",
             headers: this._headers,
-        }).then(this._getRes);
+        }).then(this.renderResult);
     }
 
-    likeCard(cardId) {
-        return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
+    likeCard(card) {
+        return fetch(`${this._baseUrl}/cards/${card}/likes`, {
             method: "PUT",
             headers: this._headers,
-        }).then(this._getRes);
+        }).then(this.renderResult);
     }
 
-    dislikeCard(cardId) {
-        return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
+    dislikeCard(card) {
+        return fetch(`${this._baseUrl}/cards/${card}/likes`, {
             method: "DELETE",
             headers: this._headers,
-        }).then(this._getRes);
+        }).then(this.renderResult);
     }
 }
