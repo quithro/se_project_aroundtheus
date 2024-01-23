@@ -37,7 +37,6 @@ const api = new Api({
   }
 });
 
-
 /* -------- Form Validation ------- */
 
 const profileEditForm = document.forms["profile-edit-form"];
@@ -52,12 +51,12 @@ let cardSection;
   .then(([userData, initialCards]) => {
     userInfo.setUserInfo({ name: userData.name, about: userData.about });
     userInfo.setAvatar(userData.avatar);
-    cardSection = new Section(
+    const cardSection = new Section(
       {
         items: initialCards,
         renderer: renderCard,
       },
-      ".gallery__cards"
+      cardListEl
     );
     cardSection.renderItems();
   })
@@ -66,6 +65,7 @@ let cardSection;
   });
 
 /* ------- Validator Constants ----- */
+
 const cardFormValidator = new FormValidator(config, addCardForm);
 const editFormValidator = new FormValidator(config, profileEditForm);
 const changeProfileAvatarFormValidator = new FormValidator(config, 
@@ -88,6 +88,7 @@ const addCardPopup = new PopupWithForm(
 const cardDeletePopup = new PopupWithConfirmation('#delete-card-modal');
 
 /*--------- EnableValidation ---- */
+
 cardFormValidator.enableValidation();
 editFormValidator.enableValidation();
 changeProfileAvatarFormValidator.enableValidation();
