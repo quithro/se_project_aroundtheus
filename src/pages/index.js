@@ -66,8 +66,7 @@ let cardSection;
   });
 
 /* ------- Validator Constants ----- */
-
-const cardFormValidator = new FormValidator(config, imageAddModal);
+const cardFormValidator = new FormValidator(config, addCardForm);
 const editFormValidator = new FormValidator(config, profileEditForm);
 const changeProfileAvatarFormValidator = new FormValidator(config, 
   changeProfileAvatarForm
@@ -89,7 +88,6 @@ const addCardPopup = new PopupWithForm(
 const cardDeletePopup = new PopupWithConfirmation('#delete-card-modal');
 
 /*--------- EnableValidation ---- */
-
 cardFormValidator.enableValidation();
 editFormValidator.enableValidation();
 changeProfileAvatarFormValidator.enableValidation();
