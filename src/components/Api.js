@@ -16,7 +16,7 @@ export default class Api {
         return fetch(`${this._baseUrl}/users/me`, {
             method: "GET",
             headers: this._headers,  
-        }).then((res) => this.renderResult(res));    
+        }).then(this.renderResult);    
     }            
 
     updateAvatar(url) {
@@ -26,56 +26,56 @@ export default class Api {
             body: JSON.stringify({
                 avatar: url.avatar,
             }),
-        }.then((res) => this.renderResult(res));
+        }.then(this.renderResult);
     }
 
     getInitialCards() {
         return fetch(`${this._baseUrl}/cards`, {
             method: "GET",
             headers: this._headers,
-        }).then((res) => this.renderResult(res));
+        }).then(this.renderResult);
     }
     
-    profileUpdate({ name, description }) {
+    profileUpdate(data) {
         return fetch(`${this._baseUrl}/users/me`, {
             method: "PATCH",
             headers: this._headers,
             body: JSON.stringify({
-                name: name,
-                about: description
+                data: data.name,
+                data: data.description
             }),
-        }).then((res) => this.renderResult(res));
+        }).then(this.renderResult);
     }
 
-    addCard({ title, url }) {
+    addCard(card) {
         return fetch(`${this._baseUrl}/cards`, {
           method: "POST",
           headers: this._headers,
           body: JSON.stringify({
-            name: title,
-            link: url,
+            name: card.name,
+            link: card.link,
           }),
-        }).then((res) => this.renderResult(res));
+        }).then(this.renderResult);
       }
 
-    deleteCard(cardId) {
-        return fetch(`${this._baseUrl}/cards/${cardId}`, {
+    deleteCard(card) {
+        return fetch(`${this._baseUrl}/cards/${card}`, {
             method: "DELETE",
             headers: this._headers,
-        }).then((res) => this.renderResult(res));
+        }).then(this.renderResult);
     }
 
-    likeCard(cardId) {
-        return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
+    likeCard(card) {
+        return fetch(`${this._baseUrl}/cards/${card}/likes`, {
             method: "PUT",
             headers: this._headers,
-        }).then((res) => this.renderResult(res));
+        }).then(this.renderResult);
     }
 
-    dislikeCard(cardId) {
-        return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
+    dislikeCard(card) {
+        return fetch(`${this._baseUrl}/cards/${card}/likes`, {
             method: "DELETE",
             headers: this._headers,
-        }).then((res) => this.renderResult(res));
+        }).then(this.renderResult);
     }
 }

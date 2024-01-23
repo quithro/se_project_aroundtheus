@@ -52,7 +52,7 @@ let cardSection;
 
   Promise.all([api.getUserInfo(), api.getInitialCards()])
   .then(([userData, initialCards]) => {
-    userInfo.setUserInfo({ name: userData.name, description: userData.description });
+    userInfo.setUserInfo({ name: userData.name, about: userData.about });
     userInfo.setAvatar(userData.avatar);
     cardSection = new Section(
       {
