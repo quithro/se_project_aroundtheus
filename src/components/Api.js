@@ -42,7 +42,7 @@ export default class Api {
             headers: this._headers,
             body: JSON.stringify({
                 data: data.name,
-                data: data.description
+                data: data.description,
             }),
         }).then(this.renderResult);
     }

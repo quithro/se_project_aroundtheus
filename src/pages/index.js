@@ -23,8 +23,6 @@ import {
 
 /* ------- Constants ------- */
 
-//const cardSection = new Section(renderCard, '.cards__list');
-
 const userInfo = new UserInfo(
   ".profile__title",
   ".profile__description",
