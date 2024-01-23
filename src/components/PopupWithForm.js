@@ -13,8 +13,8 @@ export default class PopupWithForm extends Popup {
   }
 
   close() {
-    this._popupForm.reset();
     super.close();
+    this._popupForm.reset();
   }
 
   _getInputValues() {
@@ -23,7 +23,7 @@ export default class PopupWithForm extends Popup {
     );
     this._inputValues = {};
       _inputs.forEach((input) => {
-      this._inputs[input.name] = input.value;
+      this._inputValues[input.name] = input.value;
     });
     return this._inputValues;
   }
@@ -44,5 +44,5 @@ export default class PopupWithForm extends Popup {
     });
     
   }
-
+  
 }

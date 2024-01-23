@@ -19,6 +19,7 @@ export default class Card {
       const cardElement = cardTemplate.content
       .querySelector(".card")
       .cloneNode(true);
+      return cardElement
     }
 
     _setEventListeners() {
@@ -42,9 +43,9 @@ export default class Card {
 
    _renderLikes() {
       if (this.isLiked) {
-        this._handleLikeButton.classList.add("card__like-button_active");
+        this._likeButton.classList.add("card__like-button_active");
       } else {
-        this._handleLikeButton.classList.remove("card__like-button_active");
+        this._likeButton.classList.remove("card__like-button_active");
       }
     } 
 
@@ -60,7 +61,7 @@ export default class Card {
     getView() {
       this._likeButton = this._cardElement.querySelector(".card__like-button");
       this._trashButton = this._cardElement.querySelector(
-        ".card__delete-button"
+        ".card__trash-button"
       );
       this._cardImage = this._cardElement.querySelector(".card__image");
       this._cardTitle = this._cardElement.querySelector(".card__title");

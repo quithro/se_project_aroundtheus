@@ -37,7 +37,6 @@ const api = new Api({
   }
 });
 
-
 /* -------- Form Validation ------- */
 
 const profileEditForm = document.forms["profile-edit-form"];
@@ -57,7 +56,7 @@ let cardSection;
         items: initialCards,
         renderer: renderCard,
       },
-      ".gallery__cards"
+      ".cards__list"
     );
     cardSection.renderItems();
   })
@@ -66,6 +65,7 @@ let cardSection;
   });
 
 /* ------- Validator Constants ----- */
+
 const cardFormValidator = new FormValidator(config, addCardForm);
 const editFormValidator = new FormValidator(config, profileEditForm);
 const changeProfileAvatarFormValidator = new FormValidator(config, 
@@ -79,8 +79,7 @@ const profileEditPopup = new PopupWithForm(
   "#profile-edit-modal",
   handleProfileEditSubmit,
 );
-const popupWithImage = new PopupWithImage("#image-preview-modal");
-popupWithImage.setEventListeners();
+const imagePopup = new PopupWithImage("#image-preview-modal");
 const addCardPopup = new PopupWithForm(
   "#add-image-modal",
   handleAddImageSubmit,
@@ -88,6 +87,7 @@ const addCardPopup = new PopupWithForm(
 const cardDeletePopup = new PopupWithConfirmation('#delete-card-modal');
 
 /*--------- EnableValidation ---- */
+
 cardFormValidator.enableValidation();
 editFormValidator.enableValidation();
 changeProfileAvatarFormValidator.enableValidation();
@@ -97,8 +97,8 @@ changeProfileAvatarFormValidator.enableValidation();
 
 function createCard(cardData) {
   const card = new Card(cardData, "#card-template", {
-    handleImageClick: () => popupWithImage.open(cardData.name, cardData.link),
-    handleCardDelete,
+    handleImageClick: () => imagePopup.open(cardData.name, cardData.link),
+    handleTrashCard,
     handleCardLike: handleCardLike,
   });
   return card.getView();
@@ -109,7 +109,7 @@ function renderCard(cardData) {
   cardSection.addItem(cardEl);
 }
 
-function handleCardDelete(cardId) {
+function handleTrashCard(cardId) {
   cardDeletePopup.open();
   cardDeletePopup.setSubmitAction(() => {
     cardDeletePopup.setLoading(true, "Deleting...");
@@ -217,7 +217,7 @@ imageAddButton.addEventListener("click", () => {
 
 /* -------- setEventListeners ------ */
 
-popupWithImage.setEventListeners();
+imagePopup.setEventListeners();
 changeProfileAvatarPopup.setEventListeners();
 profileEditPopup.setEventListeners();
 addCardPopup.setEventListeners();
