@@ -12,6 +12,26 @@
   grid-template-columns: minmax(auto, 373px) auto;
 }
 
+.profile__avatar-edit-button {
+  position: absolute;
+  background: transparent url("../images/Vector.svg") center no-repeat;
+  margin: auto 0;
+  width: 40px;
+  height: 40px;
+  top: 80px; 
+  left: 39px;
+  border: none;
+  opacity: 0;
+  background-size: cover;
+  background-color: rgba(0, 0, 0, 0.2);
+  transition:  0.5s ease-in-out;
+}
+
+.profile__avatar-edit-button:hover {
+  opacity: 1;
+ cursor: pointer;
+}
+
 .profile__edit-button {
   background: transparent url(../images/Edit-Button.svg) center no-repeat;
   height: 24px;
@@ -36,7 +56,7 @@
 }
 
 .profile__add-button:hover {
-  opacity: 60%;
+  opacity: 0.8;
   cursor: pointer;
 }
 
@@ -81,20 +101,6 @@
     position: relative;
 }
 
-.profile__avatar-edit-button {
-  position: absolute;
-  background: transparent url("../images/Vector.svg") center no-repeat;
-  width: 26px;
-  height: 26px;
-  top: 47px; 
-  left: 47px;
-  border: none;
-  opacity: 0;
-  background-size: contain;
-  background-color: rgba(0, 0, 0, 0.2);
-  transition:  0.3s ease-in-out;
-}
-
 @media screen and (max-width: 795px) {
   .profile {
     min-width: 450px;
@@ -107,6 +113,12 @@
   .profile__edit-button {
     margin-left: 10px;
     margin-right: 12px;
+  }
+
+  .profile__avatar-edit-button {
+    position: absolute;
+    left: 40px;
+    top: 80px;
   }
 
   .profile__title {
@@ -144,6 +156,13 @@
     padding-left: 43px;
   }
 
+  .profile__avatar-edit-button {
+    position: absolute;
+    left: auto;
+    right: auto;
+    top: 80px;
+  }
+
   .profile__description {
     text-align: center;
   }
@@ -165,6 +184,13 @@
     width: 18px;
     height: 18px;
     margin-right: 15px;
+  }
+
+  .profile__avatar-edit-button {
+    position: absolute;
+    left: auto;
+    right: auto;
+    top: 75px;
   }
 
   .profile__title {

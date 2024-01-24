@@ -40,7 +40,6 @@ export const profileTitleInput = document.querySelector("#profile-title-input");
 export const profileDescriptionInput = document.querySelector("#profile-description-input");
 export const imageAddModal = document.querySelector('#add-image-modal');
 export const imageAddButton = document.querySelector('#profile__add-button');
-export const cardListEl = document.querySelector('.cards__list');
+export const cardListEl = document.querySelector('#cards__list');
 
-
-
+export const profileAvatarEditButton = document.querySelector(".profile__avatar-edit-button");
