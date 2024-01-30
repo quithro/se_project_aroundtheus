@@ -24,12 +24,12 @@ export default class Api {
         }).then(this.renderResult);    
     }            
 
-    updateAvatar(url) {
+    updateAvatar(link) {
         return fetch(`${this._baseUrl}/users/me/avatar`, {
             method: "PATCH",
             headers: this._headers,
             body: JSON.stringify({
-                avatar: url.avatar,
+                avatar: link.avatar,
             }),
         }).then(this.renderResult);
     }

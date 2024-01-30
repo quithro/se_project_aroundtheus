@@ -128,10 +128,10 @@ function handleTrashCard(cardId) {
   });
 } 
 
-function handleChangeProfileAvatarFormSubmit(url) { 
+function handleChangeProfileAvatarFormSubmit(link) { 
   changeProfileAvatarPopup.setLoading(true, "Saving...");
   api
-    .updateAvatar(url)
+    .updateAvatar(link)
     .then((data) => {
      userInfo.setAvatar(data.avatar);
       changeProfileAvatarPopup.close();
