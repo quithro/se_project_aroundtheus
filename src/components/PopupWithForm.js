@@ -19,11 +19,11 @@ export default class PopupWithForm extends Popup {
 
   _getInputValues() {
     const _inputs = this._inputs;
-    this._inputValues = {};
+    const inputValues = {};
     _inputs.forEach((input) => {
-      this._inputValues[input.name] = input.value;
+      inputValues[input.name] = input.value;
     });
-    return this._inputValues;
+    return inputValues;
   }
 
   setLoading(submit, loadingText = "Saving...") {

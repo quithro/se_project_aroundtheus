@@ -4,6 +4,7 @@ export default class Section {
     this._renderer = renderer;
     this._containerSelector = document.querySelector(containerSelector);
   }
+
   renderItems() {
     this._items.forEach(this._renderer);
   }
@@ -12,4 +13,3 @@ export default class Section {
     this._containerSelector.prepend(cardEl);
   }
 }
-  
